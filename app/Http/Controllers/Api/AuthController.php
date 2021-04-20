@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LogoutRequest;
 use App\Models\User;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -49,5 +50,17 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
             'user' => $user,
         ]);
+    }
+
+    public function logout(){
+        try{
+            auth()->user()->tokens()->delete();
+            return $this->apiSucsess('Tokens revoked');
+        } catch (\Throwable $e){
+            throw new HttpResponseException($this->apiError(
+                null,
+                Response::HTTP_INTERNAL_SERVER_ERROR,
+            ));
+        }
     }
 }

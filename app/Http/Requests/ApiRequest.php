@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Traits\ApiResponse;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;

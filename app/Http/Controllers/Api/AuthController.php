@@ -7,8 +7,10 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Traits\ApiResponse;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Api;
 
@@ -17,7 +19,7 @@ class AuthController extends Controller
     use ApiResponse;
 
     public function register(RegisterRequest $request){
-        $validated = $request->validated('name');
+        $validated = $request->validated();
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],

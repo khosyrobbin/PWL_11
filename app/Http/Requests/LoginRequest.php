@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
